@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_app/cores/firebase_options.dart';
 import 'package:video_app/cores/screens/loader.dart';
 import 'package:video_app/features/auth/pages/username_page.dart';
+import 'package:video_app/features/channel/my_channel/pages/channel_settings.dart';
 import 'package:video_app/home_page.dart';
 
 import 'features/auth/pages/login_page.dart';

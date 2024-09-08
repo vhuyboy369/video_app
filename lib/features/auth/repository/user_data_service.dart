@@ -18,7 +18,7 @@ class UserDataService {
     required this.auth,
     required this.firestore,
   });
-
+  // thêm infor user vào firebase database
   addUserDataToFirestore({
     required String displayName,
     required String username,
@@ -42,5 +42,19 @@ class UserDataService {
         .collection("users")
         .doc(auth.currentUser!.uid)
         .set(user.toMap());
+  }
+
+  Future<UserModel> fetchCurrentUserData() async {
+    final currentUserMap =
+    await firestore.collection("users").doc(auth.currentUser!.uid).get();
+    UserModel user = UserModel.fromMap(currentUserMap.data()!);
+    return user;
+  }
+
+  Future<UserModel> fetchAnyUserData(userId) async {
+    final currentUserMap =
+    await firestore.collection("users").doc(userId).get();
+    UserModel user = UserModel.fromMap(currentUserMap.data()!);
+    return user;
   }
 }

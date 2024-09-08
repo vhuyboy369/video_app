@@ -30,12 +30,15 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
     final users = usersMap.docs.map((user) => user).toList();
     String? targetedUsername;
 
+    // Check user nhập trong text đã có trong database chưa ?
     for (var user in users) {
+      //Tên user đã có, isValidate = false và ko tiếp tục
       if (usernameController.text == user.data()["username"]) {
         targetedUsername = user.data()["username"];
         isValidate = false;
         setState(() {});
       }
+      //Tên user ch có, isValidate = true và tiếp tục
       if (usernameController.text != targetedUsername) {
         isValidate = true;
         setState(() {});
@@ -108,7 +111,7 @@ class _UsernamePageState extends ConsumerState<UsernamePage> {
               child: FlatButton(
                 text: "CONTINUE",
                 onPressed: () async {
-                  // add users data inside datebase
+                  // add users data inside database
                   isValidate
                       ? await ref
                       .read(userDataServiceProvider)
