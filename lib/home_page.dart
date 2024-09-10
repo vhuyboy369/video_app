@@ -4,9 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_app/cores/widgets/image_button.dart';
+import 'package:video_app/pages_list.dart';
 
 import 'cores/screens/error_page.dart';
 import 'cores/screens/loader.dart';
+import 'features/account/account_page.dart';
 import 'features/auth/provider/user_provider.dart';
 import 'features/content/bottom_navigation.dart';
 import 'features/upload/upload_bottom_sheet.dart';
@@ -74,16 +76,16 @@ class _HomePageState extends State<HomePage> {
                           data: (currentUser) => Padding(
                             padding: const EdgeInsets.only(right: 12),
                             child: GestureDetector(
-                              // onTap: () {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => AccountPage(
-                              //         user: currentUser,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AccountPage(
+                                      user: currentUser,
+                                    ),
+                                  ),
+                                );
+                              },
                               //Avatar
                               child: CircleAvatar(
                                 radius: 14,
@@ -107,19 +109,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomNavigation(
-      //   onPressed: (index) {
-      //     if (index != 2) {
-      //       currentIndex = index;
-      //       setState(() {});
-      //     } else {
-      //       showModalBottomSheet(
-      //         context: context,
-      //         builder: (context) => const CreateBottomSheet(),
-      //       );
-      //     }
-      //   },
-      // ),
+      bottomNavigationBar: BottomNavigation(
+        onPressed: (index) {
+          if (index != 2) {
+            currentIndex = index;
+            setState(() {});
+          } else {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => const CreateBottomSheet(),
+            );
+          }
+        },
+      ),
     );
   }
 }
