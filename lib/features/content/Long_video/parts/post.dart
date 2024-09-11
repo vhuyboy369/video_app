@@ -23,25 +23,25 @@ class Post extends ConsumerWidget {
 
     final user = userModel.whenData((user) => user);
     return GestureDetector(
-      // onTap: () async {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => Video(
-      //         video: video,
-      //       ),
-      //     ),
-      //   );
-      //
-      //   await FirebaseFirestore.instance
-      //       .collection("videos")
-      //       .doc(video.videoId)
-      //       .update(
-      //     {
-      //       "views": FieldValue.increment(1),
-      //     },
-      //   );
-      // },
+      onTap: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Video(
+              video: video,
+            ),
+          ),
+        );
+
+        await FirebaseFirestore.instance
+            .collection("videos")
+            .doc(video.videoId)
+            .update(
+          {
+            "views": FieldValue.increment(1),
+          },
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8),
         child: Column(
